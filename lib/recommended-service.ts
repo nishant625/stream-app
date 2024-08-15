@@ -9,15 +9,28 @@ export const getRecommended = async () => {
     userId = null;
   }
 
-  let users=[]
-  if(userId){
-    users=await db.user.findMany({
-      where:{
-        NOT:{id:userId}
+  let users = [];
+  if (userId) {
+    users = await db.user.findMany({
+      where: {
+        AND: [
+          {
+            NOT: { id: userId },
+          },
+          {
+            NOT:{
+              followedBy:{
+                some:{
+                  followerId:userId
+                }
+              }
+            }
+          },
+        ],
       },
-      orderBy:{createdAt:"desc"}
-    })
-  }else{
+      orderBy: { createdAt: "desc" },
+    });
+  } else {
     users = await db.user.findMany({
       orderBy: {
         createdAt: "desc",
@@ -26,6 +39,6 @@ export const getRecommended = async () => {
   }
 
   // await new Promise(resolve=> setTimeout(resolve,5000))
-   
+
   return users;
 };
