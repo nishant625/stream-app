@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-
+import { Toaster } from "sonner";
 import { Inter } from "next/font/google";
 import "./globals.css";
 import { ClerkProvider } from "@clerk/nextjs";
@@ -22,7 +22,14 @@ export default function RootLayout({
     <ClerkProvider appearance={{ baseTheme: dark }}>
       <html lang="en">
         <body className={inter.className}>
-          <ThemeProvider attribute="class" forcedTheme="dark" storageKey="gamehub-theme" >{children}</ThemeProvider>
+          <ThemeProvider
+            attribute="class"
+            forcedTheme="dark"
+            storageKey="gamehub-theme"
+          >
+            <Toaster theme="light" position="bottom-center"/>
+            {children}
+          </ThemeProvider>
         </body>
       </html>
     </ClerkProvider>

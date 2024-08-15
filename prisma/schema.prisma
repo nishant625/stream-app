@@ -14,12 +14,34 @@ datasource db {
 }
 
 model User {
-  id String @id @default(uuid()) @map("_id")
-  username String @unique
-  imageUrl String @db.String
-  externalUserId String @unique
-  bio String? @db.String
+  id             String   @id @default(uuid()) @map("_id")
+  username       String   @unique
+  imageUrl       String   @db.String
+  externalUserId String   @unique
+  bio            String?  @db.String
+  following      Follow[] @relation(name: "Following")
+  followedBy     Follow[] @relation(name: "FollowedBy")
 
   createdAt DateTime @default(now())
   updatedAt DateTime @default(now())
+}
+
+model Follow {
+  id          String @id @default(uuid()) @map("_id")
+  followerId  String
+  followingId String
+  
+
+  follower User @relation(name: "Following", fields: [followerId], references: [id], onDelete: Cascade)
+
+  following User @relation(name: "FollowedBy", fields: [followingId], references: [id], onDelete: Cascade)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @default(now())
+  
+  @@index([followerId])
+  @@index([followingId])
+
+
+  @@unique([followerId,followingId])
 }
