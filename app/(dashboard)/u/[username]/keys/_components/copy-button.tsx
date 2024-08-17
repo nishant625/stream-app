@@ -22,7 +22,7 @@ const CopyButton = ({ value }: CopyButtonProps) => {
   };
   const Icon = isCopied ? CheckCheck : Copy;
   return (
-    <Button onClick={onCopy} disabled={!value|| !isCopied} variant={"ghost"} size={"sm"}>
+    <Button onClick={onCopy} disabled={!value|| isCopied} variant={"ghost"} size={"sm"}>
       <Icon  className=" h-4 w-4" />
     </Button>
   );
