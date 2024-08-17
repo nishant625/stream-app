@@ -13,7 +13,8 @@ import { ChatVariant, useChatSidebar } from "@/store/use-chat-sidebar";
 
 import { ChatForm, ChatFormSkeleton } from "./chat-form";
 import ChatHeader, { ChatHeaderSkeleton } from "./chat-header";
-import { ChatList } from "./chat-list";
+import { ChatList, ChatListSkeleton } from "./chat-list";
+import { ChatCommunity } from "./chat-community";
 
 const Chat = ({
   hostName,
@@ -84,11 +85,11 @@ const Chat = ({
       )}
       {variant === ChatVariant.COMMUNITY && (
         <>
-          {/* <ChatCommunity
+          <ChatCommunity
             hostName={hostName}
             viewerName={viewerName}
             isHidden={isHidden}
-          /> */}
+          />
         </>
       )}
     </div>
@@ -96,12 +97,12 @@ const Chat = ({
 };
 
 export default Chat;
-// export function ChatSkeleton() {
-//   return (
-//     <div className="flex flex-col border-l border-b pt-0 h-[calc(100vh-80px)] border-2">
-//       <ChatHeaderSkeleton />
-//       <ChatListSkeleton />
-//       <ChatFormSkeleton />
-//     </div>
-//   );
-// }
+export function ChatSkeleton() {
+  return (
+    <div className="flex flex-col border-l border-b pt-0 h-[calc(100vh-80px)] border-2">
+      <ChatHeaderSkeleton />
+      <ChatListSkeleton />
+      <ChatFormSkeleton />
+    </div>
+  );
+}
