@@ -35,7 +35,7 @@ type CustomUser = {
   };
 };
 
-export function StreamPlayer({
+const StreamPlayer=({
   user,
   stream,
   isFollowing,
@@ -43,7 +43,7 @@ export function StreamPlayer({
   user: CustomUser;
   stream: CustomStream;
   isFollowing: boolean;
-}) {
+})=> {
   const { identity, name, token } = useViewerToken(user.id);
   const { collapsed } = useChatSidebar((state) => state);
 
