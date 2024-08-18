@@ -106,6 +106,8 @@ const StreamPlayer=({
   );
 }
 
+
+export default StreamPlayer
 export function StreamPlayerSkeleton() {
   return (
     <div className="grid grid-cols-1 lg:gap-y-0 lg:grid-cols-3 xl:grid-cols-3 2xl:grid-cols-6 h-full">
